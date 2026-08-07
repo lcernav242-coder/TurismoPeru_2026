@@ -38,4 +38,4 @@ TurismoPeru_2026/
 ## 👨‍🏫 Autor
 Proyecto desarrollado aplicando conceptos de programación web con Python, Flask y SQL Server.
 Luis Fernando Cerna Villoslada
-Fecha: 07.08.2026
+Fecha: 14.10.2025
