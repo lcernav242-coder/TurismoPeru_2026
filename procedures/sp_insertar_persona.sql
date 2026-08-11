@@ -1,4 +1,4 @@
-USE TurismoPeru_2026;
+USE TURISMOPERU_LFCV;
 GO
 
 CREATE PROCEDURE sp_insertar_persona

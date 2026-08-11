@@ -4,6 +4,6 @@ GO
 CREATE PROCEDURE sp_listar_paquetes
 AS
 BEGIN
-    SELECT * FROM LFCV.paquete;
+    SELECT * FROM paquete;
 END
 GO

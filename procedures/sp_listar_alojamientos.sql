@@ -4,6 +4,6 @@ GO
 CREATE PROCEDURE sp_listar_alojamientos
 AS
 BEGIN
-    SELECT * FROM LFCV.alojamiento;
+    SELECT * FROM alojamiento;
 END
 GO

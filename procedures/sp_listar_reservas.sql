@@ -4,6 +4,6 @@ GO
 CREATE PROCEDURE sp_listar_reservas
 AS
 BEGIN
-    SELECT * FROM LFCV.reserva;
+    SELECT * FROM reserva;
 END
 GO

@@ -4,6 +4,6 @@ GO
 CREATE PROCEDURE sp_listar_empleados
 AS
 BEGIN
-    SELECT * FROM LFCV.empleado;
+    SELECT * FROM empleado;
 END
 GO
