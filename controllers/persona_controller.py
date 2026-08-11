@@ -32,3 +32,33 @@ def insertar_persona(persona):
     finally:
         cursor.close()
         conexion.close()
+def buscar_persona_dni(dni):
+    conexion = conectar()
+    try:
+        cursor = conexion.cursor()
+        cursor.execute("EXEC lfcv.sp_buscar_persona_dni ?", (dni,))
+        persona = cursor.fetchone()
+        return persona
+    finally:
+        cursor.close()
+        conexion.close()
+
+def actualizar_persona(id_persona, nombres, apaterno, amaterno, telefono):
+    conexion = conectar()
+    try:
+        cursor = conexion.cursor()
+        cursor.execute("EXEC lfcv.sp_actualizar_persona ?, ?, ?, ?, ?", (id_persona, nombres, apaterno, amaterno, telefono))
+        conexion.commit()
+    finally:
+        cursor.close()
+        conexion.close()
+
+def eliminar_persona(id_persona):
+    conexion = conectar()
+    try:
+        cursor = conexion.cursor()
+        cursor.execute("EXEC lfcv.sp_eliminar_persona ?", (id_persona,))
+        conexion.commit()
+    finally:
+        cursor.close()
+        conexion.close()

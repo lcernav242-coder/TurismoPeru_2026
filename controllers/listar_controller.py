@@ -4,7 +4,7 @@ def listarpersonas():
     conexion = conectar()
     try:
         cursor = conexion.cursor()
-        cursor.execute("EXEC LFCV.sp_ListarPersonas")
+        cursor.execute("EXEC lfcv.sp_listar_personas")
         personas = cursor.fetchall()
         return personas
     finally:
@@ -15,7 +15,8 @@ def listarclientes():
     conexion = conectar()
     try:
         cursor = conexion.cursor()
-        cursor.execute("EXEC LFCV.sp_ListarClientes")
+        # Aquí se cambia el procedimiento al nuevo que tiene el JOIN
+        cursor.execute("EXEC lfcv.sp_listar_clientes_detalle")
         clientes = cursor.fetchall()
         return clientes
     finally:

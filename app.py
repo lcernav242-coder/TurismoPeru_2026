@@ -1,10 +1,8 @@
 from flask import *
 from models.cliente import Cliente
 from models.persona import Persona
-#from models.viewPersona import viewPersona
-#from controllers.cliente_controller import insertar_cliente
 from controllers.listar_controller import listarclientes, listarpersonas
-from controllers.persona_controller import insertar_persona
+from controllers.persona_controller import insertar_persona, buscar_persona_dni, actualizar_persona, eliminar_persona
 
 app = Flask(__name__)
 
@@ -16,16 +14,9 @@ def inicio():
         personas=personas
     )
 
-# Se omite la segunda función inicio() de la guía para evitar conflictos de rutas
-# def inicio():
-#     clientes = listarclientes()
-#     return render_template(
-#         "index.html",
-#         clientes=clientes
-#     )
-
 @app.route("/clientes")
 def client():
+    # Esta ruta ahora ejecutará internamente sp_listar_clientes_detalle
     clientes = listarclientes()
     return render_template(
         "clientes.html",
@@ -55,32 +46,38 @@ def guardar():
     insertar_persona(persona)
     return redirect("/")
 
+@app.route("/buscar_dni", methods=["POST"])
+def buscar_dni():
+    # Nueva ruta para usar el procedimiento sp_buscar_persona_dni
+    dni = request.form.get("dni_buscar")
+    resultado = buscar_persona_dni(dni)
+    # Aquí puedes redirigir a donde desees mostrar el resultado
+    return redirect("/")
+
 @app.route("/editar/<int:id>")
 def editar(id):
-    persona = buscar_cliente(id)
+    # Nota: Necesitarás un archivo editar.html en templates para que esto renderice
+    persona = buscar_persona_dni(id) # Asumiendo que adaptas la búsqueda o creas buscar_por_id
     return render_template(
         "editar.html",
-        persona=cliente
+        persona=persona
     )
 
-@app.route(
-    "/actualizar",
-    methods=["POST"]
-)
+@app.route("/actualizar", methods=["POST"])
 def actualizar():
-    actualizar_cliente(
+    actualizar_persona(
         request.form["id"],
-        request.form["nombre"],
-        request.form["apellido"],
-        request.form["documento"]
+        request.form["nombres"],
+        request.form["apaterno"],
+        request.form["amaterno"],
+        request.form["telefono"]
     )
-    return redirect("/")
+    return redirect("/clientes")
 
 @app.route("/eliminar/<int:id>")
 def eliminar(id):
-    eliminar_cliente(id)
-    return redirect("/")
+    eliminar_persona(id)
+    return redirect("/clientes")
 
-# El app.run siempre debe ir al final de todas las rutas
 if __name__ == '__main__':
     app.run(debug=True)
