@@ -1,9 +1,7 @@
-USE TurismoPeru_2026;
-GO
-
-CREATE PROCEDURE sp_listar_personas
+CREATE OR ALTER PROCEDURE lfcv.sp_ListarPersonas
 AS
 BEGIN
-    SELECT * FROM persona;
+    Select id_persona, tipo_persona,nombres, apaterno,amaterno, estado
+    From lfcv.persona
 END
 GO

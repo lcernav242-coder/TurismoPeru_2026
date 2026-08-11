@@ -1,15 +1,20 @@
-USE TURISMOPERU_LFCV;
-GO
-
-CREATE PROCEDURE sp_buscar_persona_dni
+CREATE OR ALTER PROCEDURE lfcv.sp_buscar_persona_dni
     @dni VARCHAR(8)
 AS
 BEGIN
-    IF EXISTS (SELECT 1 FROM persona WHERE dni = @dni)
+    SET NOCOUNT ON;
+
+    IF EXISTS (SELECT 1 FROM lfcv.persona WHERE numero_documento = @dni)
     BEGIN
-        SELECT id_persona, nombres, apellidos, dni, telefono 
-        FROM persona 
-        WHERE dni = @dni;
+        SELECT 
+            id_persona, 
+            nombres, 
+            apaterno, 
+            amaterno, 
+            numero_documento AS dni, 
+            telefono 
+        FROM lfcv.persona 
+        WHERE numero_documento = @dni;
     END
     ELSE
     BEGIN

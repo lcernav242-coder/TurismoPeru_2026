@@ -1,14 +1,29 @@
-USE TURISMOPERU_LFCV;
-GO
-
-CREATE PROCEDURE sp_insertar_persona
-    @nombres VARCHAR(100),
-    @apellidos VARCHAR(100),
-    @dni VARCHAR(8),
-    @telefono VARCHAR(15)
-AS
-BEGIN
-    INSERT INTO persona (nombres, apellidos, dni, telefono)
-    VALUES (@nombres, @apellidos, @dni, @telefono);
+CREATE OR ALTER PROCEDURE lfcv.sp_insertarPersona
+@tipo_persona varchar(1),
+@nombres varchar(100), 
+@apaterno varchar(100),
+@amaterno varchar(100),  
+@razon_social varchar(150), 
+@nombre_comercial varchar(150), 
+@id_tipo_documento int, 
+@numero_documento varchar(20), 
+@telefono varchar(15),
+@email varchar(100),
+@id_nacionalidad int,
+@estado varchar(20)
+as
+BEGIN 
+    BEGIN TRY
+        INSERT INTO lfcv.persona (tipo_persona, nombres, apaterno, amaterno, 
+        razon_social, nombre_comercial, id_tipo_documento, numero_documento, telefono,
+        email, id_nacionalidad, estado)
+        values (@tipo_persona, @nombres, @apaterno, @amaterno,  
+        @razon_social, @nombre_comercial, @id_tipo_documento, @numero_documento, 
+        @telefono,  @email, @id_nacionalidad, @estado);
+        PRINT 'Persona Registrada Correctamente';
+    END TRY
+    Begin catch
+        select ERROR_MESSAGE();
+    End catch
 END
 GO
