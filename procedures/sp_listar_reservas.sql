@@ -1,9 +1,0 @@
-USE TURISMOPERU_LFCV;
-GO
-
-CREATE PROCEDURE sp_listar_reservas
-AS
-BEGIN
-    SELECT * FROM reserva;
-END
-GO

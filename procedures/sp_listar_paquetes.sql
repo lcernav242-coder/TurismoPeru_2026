@@ -1,9 +1,0 @@
-USE TURISMOPERU_LFCV;
-GO
-
-CREATE PROCEDURE sp_listar_paquetes
-AS
-BEGIN
-    SELECT * FROM paquete;
-END
-GO

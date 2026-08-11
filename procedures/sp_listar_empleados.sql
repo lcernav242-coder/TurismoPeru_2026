@@ -1,9 +1,0 @@
-USE TURISMOPERU_LFCV;
-GO
-
-CREATE PROCEDURE sp_listar_empleados
-AS
-BEGIN
-    SELECT * FROM empleado;
-END
-GO

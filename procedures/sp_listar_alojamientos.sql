@@ -1,9 +1,0 @@
-USE TURISMOPERU_LFCV;
-GO
-
-CREATE PROCEDURE sp_listar_alojamientos
-AS
-BEGIN
-    SELECT * FROM alojamiento;
-END
-GO
