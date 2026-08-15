@@ -1,3 +1,4 @@
+-- Clasificación del cliente
 CREATE OR ALTER FUNCTION lfcv.fn_ClasificacionCliente
 (
     @IdCliente int
